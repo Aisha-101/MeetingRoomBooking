@@ -1,0 +1,17 @@
+# React
+meeting-room-booking-ui/node_modules/
+meeting-room-booking-ui/dist/
+
+# .NET build files
+**/bin/
+**/obj/
+
+# IDE files
+.vs/
+.vscode/
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+secrets.json
