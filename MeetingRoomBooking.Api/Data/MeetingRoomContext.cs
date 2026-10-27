@@ -11,4 +11,9 @@ public class MeetingRoomContext : DbContext
 
     public DbSet<MeetingRoom> MeetingRooms =>
         Set<MeetingRoom>();
+    
+    public DbSet<Reservation> Reservations =>
+        Set<Reservation>();
+    public DbSet<User> Users =>
+        Set<User>();
 }
