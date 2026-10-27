@@ -46,7 +46,7 @@ button {
 
 h1 {
     margin: 0;
-    color: black;
+    color: #202638;
     font-size: clamp(2rem, 4vw, 3rem);
     letter-spacing: -0.045em;
 }
@@ -55,26 +55,6 @@ h1 {
     margin: 12px 0 0;
     color: #70788b;
     font-size: 1rem;
-}
-
-.room-count {
-    display: flex;
-    min-width: 100px;
-    flex-direction: column;
-    align-items: center;
-    gap: 3px;
-    padding: 16px;
-    border: 1px solid #e7eaf2;
-    border-radius: 16px;
-    background: white;
-    color: #70788b;
-    font-size: 0.85rem;
-}
-
-.room-count span:first-child {
-    color: #635bdb;
-    font-size: 1.7rem;
-    font-weight: 800;
 }
 
 .section-header {
@@ -139,20 +119,28 @@ h1 {
 }
 
 .status-badge {
+    display: inline-block;
     padding: 6px 10px;
     border-radius: 999px;
     font-size: 0.75rem;
     font-weight: 700;
 }
 
-.status-badge.active {
+.status-badge.active,
+.status-badge.booked {
     background: #e5f8ee;
     color: #197647;
 }
 
-.status-badge.inactive {
+.status-badge.inactive,
+.status-badge.cancelled {
     background: #fff0e8;
     color: #a34a22;
+}
+
+.status-badge.completed {
+    background: #efedff;
+    color: #5148c4;
 }
 
 .room-card h3 {
@@ -266,26 +254,90 @@ h1 {
     color: #202638;
 }
 
+/* Reservations and users tables */
+.data-section {
+    margin-top: 48px;
+}
+
+.table-container {
+    overflow-x: auto;
+    border: 1px solid #e8eaf1;
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 6px 24px rgb(30 41 59 / 4%);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+thead {
+    background: #f8f9fc;
+}
+
+th,
+td {
+    padding: 16px 18px;
+    border-bottom: 1px solid #edf0f5;
+    white-space: nowrap;
+}
+
+th {
+    color: #70788b;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+td {
+    font-size: 0.9rem;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+tbody tr:hover {
+    background: #fafaff;
+}
+
+.count-badge {
+    display: inline-flex;
+    min-width: 32px;
+    justify-content: center;
+    padding: 6px 10px;
+    border-radius: 8px;
+    background: #efedff;
+    color: #5148c4;
+    font-weight: 700;
+}
+
+.empty-message {
+    padding: 24px;
+    color: #70788b;
+    text-align: center;
+}
+
+/* Tablet */
 @media (max-width: 900px) {
     .rooms-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
+/* Mobile */
 @media (max-width: 600px) {
     .page {
-        width: min(100% - 28px, 480px);
+        width: min(calc(100% - 28px), 480px);
         padding-top: 28px;
     }
 
     .page-header {
         align-items: flex-start;
         margin-bottom: 36px;
-    }
-
-    .room-count {
-        min-width: 72px;
-        padding: 12px;
     }
 
     .section-header {
@@ -300,5 +352,10 @@ h1 {
 
     .room-card {
         padding: 20px;
+    }
+
+    th,
+    td {
+        padding: 12px;
     }
 }

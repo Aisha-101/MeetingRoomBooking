@@ -1,6 +1,8 @@
 using MeetingRoomBooking.Api.Data;
 using MeetingRoomBooking.Api.Models;
 using Microsoft.EntityFrameworkCore;
+using MeetingRoomBooking.Api.Configuration;
+
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
@@ -22,6 +24,9 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
+builder.Services.Configure<BookingRulesOptions>(
+    builder.Configuration.GetSection("BookingRules"));
+    
 var app = builder.Build();
 
 app.UseCors("ReactApp");
