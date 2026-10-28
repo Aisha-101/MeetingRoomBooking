@@ -76,8 +76,8 @@ using (var scope = app.Services.CreateScope())
                 UserId = 1,
                 Title = "Team Planning",
                 ReservedBy = "Aisha Example",
-                StartTime = DateTime.Today.AddDays(1).AddHours(10),
-                EndTime = DateTime.Today.AddDays(1).AddHours(11),
+                StartTime = DateTime.Now.AddMinutes(-30),
+                EndTime = DateTime.Now.AddMinutes(30),
                 AttendeeCount = 4,
                 Status = Reservation.ReservationStatusEnum.Booked
             },

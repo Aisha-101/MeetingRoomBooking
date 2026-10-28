@@ -359,3 +359,231 @@ tbody tr:hover {
         padding: 12px;
     }
 }
+
+
+/* Navigation bar */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 16px max(20px, calc((100% - 1180px) / 2));
+    border-bottom: 1px solid #e8eaf1;
+    background: #ffffff;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #202638;
+    font-size: 1rem;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.navbar-logo {
+    display: grid;
+    width: 38px;
+    height: 38px;
+    place-items: center;
+    border-radius: 11px;
+    background: #efedff;
+    color: #635bdb;
+    font-size: 1.5rem;
+}
+
+.navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.navbar-link {
+    padding: 10px 14px;
+    border-radius: 9px;
+    color: #70788b;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 160ms ease, color 160ms ease;
+}
+
+.navbar-link:hover {
+    background: #f5f4ff;
+    color: #5148c4;
+}
+
+.navbar-link.selected {
+    background: #efedff;
+    color: #5148c4;
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 14px;
+        padding: 16px;
+    }
+
+    .navbar-links {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .navbar-link {
+        padding: 9px 11px;
+    }
+}
+
+
+.room-filters {
+    display: flex;
+    align-items: end;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding: 20px;
+    background: #ffffff;
+    border: 1px solid #e8eaf1;
+    border-radius: 12px;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 160px;
+}
+
+.filter-group label {
+    color: #374151;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.filter-group input,
+.filter-group select {
+    min-height: 42px;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #202638;
+    font: inherit;
+}
+
+.reset-filters-button {
+    min-height: 42px;
+    padding: 10px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #374151;
+    font: inherit;
+    cursor: pointer;
+}
+
+.reset-filters-button:hover {
+    background: #f3f4f6;
+}
+
+.room-id {
+    margin-top: -12px;
+    margin-bottom: 18px;
+    color: #858b9b;
+    font-size: 0.82rem;
+}
+
+@media (max-width: 600px) {
+    .room-filters {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .filter-group {
+        min-width: 0;
+        width: 100%;
+    }
+}
+
+
+/* Reservation creation form */
+.reservation-form-section {
+    margin-top: 24px;
+    padding: 24px;
+    border: 1px solid #e8eaf1;
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 6px 24px rgb(30 41 59 / 4%);
+}
+
+.reservation-form-section h2 {
+    margin: 0 0 22px;
+    font-size: 1.25rem;
+}
+
+.reservation-form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.reservation-form .room-button {
+    align-self: end;
+    min-height: 42px;
+}
+
+.create-button {
+    width: auto;
+    white-space: nowrap;
+}
+
+.reservation-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.action-button {
+    padding: 8px 10px;
+    border: 1px solid #e8eaf1;
+    border-radius: 8px;
+    background: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.cancel-action {
+    color: #a34a22;
+}
+
+.cancel-action:hover {
+    background: #fff0e8;
+}
+
+.end-action {
+    color: #5148c4;
+}
+
+.end-action:hover {
+    background: #efedff;
+}
+
+.action-button:disabled,
+.room-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+    .reservation-form {
+        grid-template-columns: 1fr;
+    }
+
+    .create-button {
+        width: 100%;
+    }
+}
