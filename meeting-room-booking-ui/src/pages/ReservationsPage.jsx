@@ -20,6 +20,21 @@ function toLocalDateTimeInput(date) {
         .toISOString()
         .slice(0, 16);
 }
+function getNextFullHour() {
+    const date = new Date();
+    date.setMinutes(0, 0, 0);
+    date.setHours(date.getHours() + 1);
+    return toLocalDateTimeInput(date);
+}
+
+function addMinutesToDateTime(value, minutes) {
+    if (!value) return "";
+
+    const date = new Date(value);
+    date.setMinutes(date.getMinutes() + minutes);
+
+    return toLocalDateTimeInput(date);
+}
 
 function ReservationsPage() {
     const [reservations, setReservations] = useState([]);
@@ -41,8 +56,14 @@ function ReservationsPage() {
     const [meetingRoomId, setMeetingRoomId] = useState("");
     const [userId, setUserId] = useState("");
     const [title, setTitle] = useState("");
-    const [reservationStart, setReservationStart] = useState("");
-    const [reservationEnd, setReservationEnd] = useState("");
+    
+    const [reservationStart, setReservationStart] = useState(
+        getNextFullHour()
+    );
+    const [reservationEnd, setReservationEnd] = useState(
+        addMinutesToDateTime(getNextFullHour(), 60)
+    );
+
     const [attendeeCount, setAttendeeCount] = useState("1");
     const [saving, setSaving] = useState(false);
 
@@ -174,8 +195,10 @@ function ReservationsPage() {
             setTitle("");
             setMeetingRoomId("");
             setUserId("");
-            setReservationStart("");
-            setReservationEnd("");
+            const nextStart = getNextFullHour();
+
+            setReservationStart(nextStart);
+            setReservationEnd(addMinutesToDateTime(nextStart, 60));
             setAttendeeCount("1");
             setMessage("Reservation created successfully.");
         } catch (err) {
@@ -343,10 +366,17 @@ function ReservationsPage() {
                                 id="newStart"
                                 type="datetime-local"
                                 value={reservationStart}
-                                onChange={(event) =>
-                                    setReservationStart(event.target.value)
-                                }
-                                required
+                                onChange={(event) => {
+                                    const newStart = event.target.value;
+                                    setReservationStart(newStart);
+
+                                    if (
+                                        !reservationEnd ||
+                                        new Date(reservationEnd) <= new Date(newStart)
+                                    ) {
+                                        setReservationEnd(addMinutesToDateTime(newStart, 60));
+                                    }
+                                }}
                             />
                         </div>
 
@@ -361,6 +391,48 @@ function ReservationsPage() {
                                 }
                                 required
                             />
+                        </div>
+
+                        <div className="filter-group">
+                            <label>Quick duration</label>
+
+                            <div className="duration-buttons">
+                                <button
+                                    type="button"
+                                    onClick={() =>
+                                        setReservationEnd(
+                                            addMinutesToDateTime(reservationStart, 30)
+                                        )
+                                    }
+                                    disabled={!reservationStart}
+                                >
+                                    30 min
+                                </button>
+
+                                <button
+                                    type="button"
+                                    onClick={() =>
+                                        setReservationEnd(
+                                            addMinutesToDateTime(reservationStart, 60)
+                                        )
+                                    }
+                                    disabled={!reservationStart}
+                                >
+                                    1 hour
+                                </button>
+
+                                <button
+                                    type="button"
+                                    onClick={() =>
+                                        setReservationEnd(
+                                            addMinutesToDateTime(reservationStart, 120)
+                                        )
+                                    }
+                                    disabled={!reservationStart}
+                                >
+                                    2 hours
+                                </button>
+                            </div>
                         </div>
 
                         <div className="filter-group">

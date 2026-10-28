@@ -587,3 +587,36 @@ tbody tr:hover {
         width: 100%;
     }
 }
+
+.duration-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.duration-buttons button {
+    min-height: 42px;
+    padding: 10px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #5148c4;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.duration-buttons button:hover:not(:disabled) {
+    background: #efedff;
+    border-color: #c7c2ff;
+}
+
+.duration-buttons button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+h2 {
+    color: black;
+}
